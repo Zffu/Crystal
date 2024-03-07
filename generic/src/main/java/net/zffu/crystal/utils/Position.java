@@ -5,6 +5,7 @@ import lombok.Setter;
 
 /**
  * Position class for working with Crystal.
+ * Recommended to use {@link Position} when modifying a position as it is mutable.
  * @author Zffu
  */
 
@@ -77,6 +78,18 @@ public class Position {
         this.x += x;
         this.y += y;
         this.z += z;
+    }
+
+    /**
+     * Substracts the provided coordinates to the current ones.
+     * @param x
+     * @param y
+     * @param z
+     */
+    public void substract(double x, double y, double z) {
+        this.x -= x;
+        this.y -= y;
+        this.z -= z;
     }
 
 
