@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>generic</module>
+        <module>minestom</module>
     </modules>
 
     <properties>

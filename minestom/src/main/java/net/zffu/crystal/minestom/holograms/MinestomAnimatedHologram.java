@@ -2,17 +2,16 @@ package net.zffu.crystal.minestom.holograms;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.minestom.server.coordinate.Pos;
-import net.minestom.server.entity.Entity;
 import net.minestom.server.entity.EntityType;
 import net.minestom.server.entity.LivingEntity;
 import net.minestom.server.entity.metadata.other.ArmorStandMeta;
 import net.minestom.server.item.ItemStack;
 import net.minestom.server.item.Material;
+import net.zffu.crystal.Crystal;
 import net.zffu.crystal.holograms.AnimatedHologram;
+import net.zffu.crystal.minestom.MinestomCrystalAdapter;
+import net.zffu.crystal.minestom.utils.MinestomUtils;
 import net.zffu.crystal.utils.Position;
-import net.zffu.crystal.wrappers.WrappedMaterial;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Implementation of a Minestom Animated Hologram.
@@ -22,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 public class MinestomAnimatedHologram extends LivingEntity implements AnimatedHologram {
 
     private Position hologramPosition;
-    private WrappedMaterial<Material> material;
+    private Object material;
 
     private double lastY;
 
@@ -56,7 +55,7 @@ public class MinestomAnimatedHologram extends LivingEntity implements AnimatedHo
      */
     private String displayName = "";
 
-    public MinestomAnimatedHologram(Position hologramPosition, WrappedMaterial<Material> material) {
+    public MinestomAnimatedHologram(Position hologramPosition, Object material) {
         super(EntityType.ARMOR_STAND);
         this.hologramPosition = hologramPosition;
         this.material = material;
@@ -68,7 +67,7 @@ public class MinestomAnimatedHologram extends LivingEntity implements AnimatedHo
         meta.setHasNoGravity(true);
         meta.setNotifyAboutChanges(true);
 
-        this.setHelmet(ItemStack.of(material.get()));
+        this.setHelmet(ItemStack.of((Material) material));
     }
 
     @Override
@@ -91,8 +90,13 @@ public class MinestomAnimatedHologram extends LivingEntity implements AnimatedHo
                     this.hologramPosition.setYaw(this.hologramPosition.getYaw() + 7 * (this.motionDown ? -1 : 1));
                 }
 
-                this.teleport(new Pos(this.hologramPosition.getX(), this.hologramPosition.getY(), this.hologramPosition.getZ(), this.hologramPosition.getYaw(), this.hologramPosition.getPitch()));
+                this.teleport(MinestomUtils.convertPosition(this.hologramPosition));
             }
         }
+    }
+
+    @Override
+    public void summon() {
+        this.setInstance(((MinestomCrystalAdapter) Crystal.getAdapter()).getInstance(), MinestomUtils.convertPosition(this.hologramPosition));
     }
 }
