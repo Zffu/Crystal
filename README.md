@@ -1,4 +1,6 @@
-![](https://github.com/Zffu/Crystal/blob/master/assets/logo.gif?raw=true) "Banner")
+<p align="center">
+<img align='center' src='https://github.com/Zffu/Crystal/blob/master/assets/logo.gif?raw=true)' width='640' height='288'>
+</p>
 
 # Crystal
 [![javadoc](https://javadoc.io/badge2/io.github.zffu/crystal/javadoc.svg)](https://javadoc.io/doc/io.github.zffu/crystal)
