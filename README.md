@@ -8,8 +8,14 @@
 
 Crystal is a server-side, software-cross (compatibly on multiple minecraft server softwares) advanced library.
 
-Crystal is using a wrapper / adapter system to be compatible with multiple platforms.
+Crystal is using a wrapper / adapter system to be compatible with multiple platforms with the end goal to be able to code an animation once and be able to use it on any server platform.
 
 It currently is compatible with:
 
 * **Minestom:** Currently WIP implementation
+
+It will eventually support:
+
+* **1.8.x - 1.21.x Spigot**: After Minestom is ready.
+* **Waterfall**: Not really sure about this one as I don't know if it is even possible.
+* **Bungeecord & Bungeecord Forks**: Same as Waterfall.
